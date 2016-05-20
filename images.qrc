@@ -1,1 +1,56 @@
-<RCC/>
+<RCC>
+    <qresource prefix="/images">
+        <file>images/QS.svg</file>
+        <file>images/QH.svg</file>
+        <file>images/QD.svg</file>
+        <file>images/QC.svg</file>
+        <file>images/KS.svg</file>
+        <file>images/KH.svg</file>
+        <file>images/KD.svg</file>
+        <file>images/KC.svg</file>
+        <file>images/JS.svg</file>
+        <file>images/JH.svg</file>
+        <file>images/JD.svg</file>
+        <file>images/JC.svg</file>
+        <file>images/AS.svg</file>
+        <file>images/AH.svg</file>
+        <file>images/AD.svg</file>
+        <file>images/AC.svg</file>
+        <file>images/10S.svg</file>
+        <file>images/10H.svg</file>
+        <file>images/10D.svg</file>
+        <file>images/10C.svg</file>
+        <file>images/9S.svg</file>
+        <file>images/9H.svg</file>
+        <file>images/9D.svg</file>
+        <file>images/9C.svg</file>
+        <file>images/8S.svg</file>
+        <file>images/8H.svg</file>
+        <file>images/8D.svg</file>
+        <file>images/8C.svg</file>
+        <file>images/7S.svg</file>
+        <file>images/7H.svg</file>
+        <file>images/7D.svg</file>
+        <file>images/7C.svg</file>
+        <file>images/6S.svg</file>
+        <file>images/6H.svg</file>
+        <file>images/6D.svg</file>
+        <file>images/6C.svg</file>
+        <file>images/5S.svg</file>
+        <file>images/5H.svg</file>
+        <file>images/5D.svg</file>
+        <file>images/5C.svg</file>
+        <file>images/4S.svg</file>
+        <file>images/4H.svg</file>
+        <file>images/4D.svg</file>
+        <file>images/4C.svg</file>
+        <file>images/3S.svg</file>
+        <file>images/3H.svg</file>
+        <file>images/3D.svg</file>
+        <file>images/3C.svg</file>
+        <file>images/2S.svg</file>
+        <file>images/2H.svg</file>
+        <file>images/2D.svg</file>
+        <file>images/2C.svg</file>
+    </qresource>
+</RCC>
