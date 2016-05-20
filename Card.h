@@ -6,7 +6,8 @@ enum Suit {
     SPADE,
     HEART,
     DIAMOND,
-    CLUB
+    CLUB,
+    NOSUIT
 };
 
 enum Rank {
@@ -22,16 +23,13 @@ enum Rank {
     TEN,
     JACK,
     QUEEN,
-    KING
+    KING,
+    NORANK
 };
 
 class Card {
 public:
     Card(Suit suit, Rank rank);
-
-    std::string rankValue();
-
-    std::string suitValue();
 
     std::string toString();
 
@@ -41,7 +39,12 @@ public:
 
 private:
     Suit suit;
+
     Rank rank;
+
+    std::string rankValue();
+
+    std::string suitValue();
 };
 
 #endif // CARD_H

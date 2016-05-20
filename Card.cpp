@@ -29,8 +29,8 @@ std::string Card::rankValue() {
         case KING: return "K";
         case ACE: return "A";
         default:
-            return "";
-            // todo
+            // This can't happen
+            throw std::string("Broke card class with null rank!");
     }
 }
 
@@ -41,8 +41,8 @@ std::string Card::suitValue() {
         case CLUB: return "C";
         case DIAMOND: return "D";
         default:
-            //todo
-            return "";
+            // This can't happen
+            throw std::string("Broke card class with null rank!");
     }
 }
 
