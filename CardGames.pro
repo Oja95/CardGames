@@ -13,12 +13,17 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    Card.cpp
+    Card.cpp \
+    Deck.cpp \
+    blackjack.cpp
 
 HEADERS  += mainwindow.h \
-    Card.h
+    Card.h \
+    Deck.h \
+    blackjack.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    blackjack.ui
 
 RESOURCES += \
     images.qrc
