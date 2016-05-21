@@ -19,6 +19,8 @@ public:
     explicit BlackJack(QWidget *parent = 0);
     ~BlackJack();
 
+    static QPixmap cardToPixmap(Card card);
+
 private slots:
     void on_pushButton_clicked();
 
@@ -27,7 +29,6 @@ private slots:
 private:
     Ui::BlackJack *ui;
 
-    int initialLabelPosition = 10;
 
     // Note to self: never go full retard
     bool first = true;
@@ -46,8 +47,6 @@ private:
     Hand dealerHand;
     
     BlackjackHandEvaluator blackjackHandEvaluator;
-
-    QPixmap cardToPixmap(Card card);
 
     void dealerDraw();
 

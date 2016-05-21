@@ -12,6 +12,8 @@ BlackJack::BlackJack(QWidget *parent) :
     ui(new Ui::BlackJack)
 {
     ui->setupUi(this);
+    on_pushButton_clicked();
+    on_pushButton_clicked();
 }
 
 BlackJack::~BlackJack()
@@ -93,6 +95,7 @@ void BlackJack::on_pushButton_2_clicked()
     ui->pushButton->setEnabled(false);
     ui->pushButton_2->setEnabled(false);
     while (blackjackHandEvaluator.evaluate(dealerHand) < 17) {
+        if (blackjackHandEvaluator.evaluate(dealerHand) > blackjackHandEvaluator.evaluate(playerHand)) break;
         dealerDraw();
     }
     setStatus();
@@ -101,7 +104,9 @@ void BlackJack::on_pushButton_2_clicked()
 void BlackJack::setStatus() {
     int playerScore = blackjackHandEvaluator.evaluate(playerHand);
     int dealerScore = blackjackHandEvaluator.evaluate(dealerHand);
-    if (dealerScore > 21 && playerScore <= 21) {
+    if (dealerScore > 21 && playerScore > 21) {
+        ui->label_15->setText(QString("It's a DRAW"));
+    } else if (dealerScore > 21 && playerScore <= 21) {
         ui->label_15->setText(QString("You WIN!"));
     } else if (dealerScore <= 21 && playerScore > 21) {
         ui->label_15->setText(QString("You LOST!"));

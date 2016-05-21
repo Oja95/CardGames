@@ -18,17 +18,20 @@ SOURCES += main.cpp\
     Deck.cpp \
     blackjack.cpp \
     Hand.cpp \
-    BlackjackHandEvaluator.cpp
+    BlackjackHandEvaluator.cpp \
+    poker.cpp
 
 HEADERS  += mainwindow.h \
     Card.h \
     Deck.h \
     blackjack.h \
     Hand.h \
-    BlackjackHandEvaluator.h
+    BlackjackHandEvaluator.h \
+    poker.h
 
 FORMS    += mainwindow.ui \
-    blackjack.ui
+    blackjack.ui \
+    poker.ui
 
 RESOURCES += \
     images.qrc

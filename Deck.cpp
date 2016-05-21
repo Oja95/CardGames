@@ -17,7 +17,6 @@ int Deck::deckSize() {
 }
 
 void Deck::shuffle() {
-    // todo: figure out actual random shuffle
     random_shuffle(cards.begin(), cards.end());
 }
 
