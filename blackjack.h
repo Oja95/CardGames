@@ -5,6 +5,7 @@
 #include "BlackjackHandEvaluator.h"
 #include "Card.h"
 #include <QDialog>
+#include <string>
 
 namespace Ui {
 class BlackJack;
@@ -28,14 +29,25 @@ private:
 
     int initialLabelPosition = 10;
 
+    // Note to self: never go full retard
     bool first = true;
     bool second = true;
     bool third = true;
     bool fourth = true;
 
+    bool dealerFirst = true;
+    bool dealerSecond = true;
+    bool dealerThird = true;
+    bool dealerFourth = true;
+    // oops
+
     Deck deck;
     Hand playerHand;
     Hand dealerHand;
+    
+    BlackjackHandEvaluator blackjackHandEvaluator;
+
+    QPixmap cardToPixmap(Card card);
 };
 
 #endif // BLACKJACK_H
