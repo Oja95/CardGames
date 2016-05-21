@@ -4,17 +4,22 @@
 int BlackjackHandEvaluator::evaluate(Hand hand) {
     std::list<Card> cards = hand.getCards();
     int value = 0;
+    int aceCount = 0;
     for (std::list<Card>::iterator it = cards.begin(); it != cards.end(); ++it) {
         if (it->getRank() == ACE) {
-            if (value + 11 >= 21) {
-                value += 1;
-            } else {
-                value += 11;
-            }
+            aceCount++;
+            continue;
         } else {
             value += cardRankToInt(*it);
         }
     }    
+    while (aceCount--) {
+        if (value + 11 <= 21) {
+            value += 11;
+        } else {
+            value++;
+        }
+    }
     return value;
 }
 
