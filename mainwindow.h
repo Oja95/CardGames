@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "blackjack.h"
+#include "poker.h"
 
 namespace Ui {
 class MainWindow;
@@ -21,10 +22,13 @@ private slots:
 
     void on_pushButton_clicked();
 
+    void on_pushButton_2_clicked();
+
 private:
     Ui::MainWindow *ui;
 
     BlackJack *blackjackWindow;
+    Poker *pokerWindow;
 };
 
 #endif // MAINWINDOW_H

@@ -26,3 +26,9 @@ void MainWindow::on_pushButton_clicked()
     blackjackWindow = new BlackJack();
     blackjackWindow->show();
 }
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    pokerWindow = new Poker();
+    pokerWindow->show();
+}

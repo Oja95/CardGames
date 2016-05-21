@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>187</width>
-    <height>217</height>
+    <width>167</width>
+    <height>208</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -32,20 +32,20 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>30</x>
       <y>20</y>
       <width>211</width>
       <height>17</height>
      </rect>
     </property>
     <property name="text">
-     <string>Kaardimängud yo</string>
+     <string>Card Games</string>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>30</x>
       <y>60</y>
       <width>99</width>
       <height>27</height>
@@ -58,7 +58,7 @@
    <widget class="QPushButton" name="pushButton_2">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>30</x>
       <y>100</y>
       <width>99</width>
       <height>27</height>
@@ -74,7 +74,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>187</width>
+     <width>167</width>
      <height>25</height>
     </rect>
    </property>
