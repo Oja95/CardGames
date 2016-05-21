@@ -16,12 +16,16 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     Card.cpp \
     Deck.cpp \
-    blackjack.cpp
+    blackjack.cpp \
+    Hand.cpp \
+    BlackjackHandEvaluator.cpp
 
 HEADERS  += mainwindow.h \
     Card.h \
     Deck.h \
-    blackjack.h
+    blackjack.h \
+    Hand.h \
+    BlackjackHandEvaluator.h
 
 FORMS    += mainwindow.ui \
     blackjack.ui

@@ -1,7 +1,7 @@
 #ifndef DECK_H
 #define DECK_H
 
-#include <list>
+#include <vector>
 #include "Card.h"
 
 class Deck {
@@ -10,8 +10,12 @@ public:
 
     int deckSize();
 
+    void shuffle();
+
+    Card draw();
+
 //private:
-    std::list<Card> cards;
+    std::vector<Card> cards;
 };
 
 #endif // DECK_H
