@@ -48,6 +48,12 @@ private:
     BlackjackHandEvaluator blackjackHandEvaluator;
 
     QPixmap cardToPixmap(Card card);
+
+    void dealerDraw();
+
+    void checkScore();
+
+    void setStatus();
 };
 
 #endif // BLACKJACK_H

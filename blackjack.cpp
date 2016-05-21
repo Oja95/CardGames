@@ -22,28 +22,9 @@ BlackJack::~BlackJack()
 void BlackJack::on_pushButton_clicked()
 {
     Card card = deck.draw();
-    if (blackjackHandEvaluator.evaluate(dealerHand) < 17) {
-        Card dealerCard = deck.draw();
-        dealerHand.addCard(dealerCard);
-        QPixmap DealerPixmap = cardToPixmap(dealerCard);
-        if (dealerFirst) {
-            ui->label_6->setPixmap(DealerPixmap);
-            dealerFirst = false;
-        } else if (dealerSecond) {
-            ui->label_7->setPixmap(DealerPixmap);
-            dealerSecond = false;
-        } else if (dealerThird) {
-            ui->label_8->setPixmap(DealerPixmap);
-            dealerThird = false;
-        } else if (dealerFourth) {
-            ui->label_9->setPixmap(DealerPixmap);
-            dealerFourth = false;
-        } else {
-            ui->label_10->setPixmap(DealerPixmap);
-        }
-        ui->label_14->setText(QString::fromStdString(std::to_string(blackjackHandEvaluator.evaluate(dealerHand))));
-    }
     playerHand.addCard(card);
+
+    dealerDraw();
 
     QPixmap pixmap = cardToPixmap(card);
 
@@ -65,10 +46,7 @@ void BlackJack::on_pushButton_clicked()
     } else {
         ui->label_5->setPixmap(pixmap);
     }
-    if (blackjackHandEvaluator.evaluate(playerHand) > 21) {
-        ui->pushButton->setEnabled(false);
-        ui->pushButton_2->setEnabled(false);
-    }
+    checkScore();
 }
 
 QPixmap BlackJack::cardToPixmap(Card card) {
@@ -78,7 +56,60 @@ QPixmap BlackJack::cardToPixmap(Card card) {
     return pixmap;
 }
 
+void BlackJack::checkScore() {
+    if (blackjackHandEvaluator.evaluate(playerHand) > 21 || blackjackHandEvaluator.evaluate(dealerHand) > 21) {
+        ui->pushButton->setEnabled(false);
+        ui->pushButton_2->setEnabled(false);
+        setStatus();
+    }
+}
+
+void BlackJack::dealerDraw() {
+    if (blackjackHandEvaluator.evaluate(dealerHand) < 17) {
+        Card dealerCard = deck.draw();
+        dealerHand.addCard(dealerCard);
+        QPixmap DealerPixmap = cardToPixmap(dealerCard);
+        if (dealerFirst) {
+            ui->label_6->setPixmap(DealerPixmap);
+            dealerFirst = false;
+        } else if (dealerSecond) {
+            ui->label_7->setPixmap(DealerPixmap);
+            dealerSecond = false;
+        } else if (dealerThird) {
+            ui->label_8->setPixmap(DealerPixmap);
+            dealerThird = false;
+        } else if (dealerFourth) {
+            ui->label_9->setPixmap(DealerPixmap);
+            dealerFourth = false;
+        } else {
+            ui->label_10->setPixmap(DealerPixmap);
+        }
+        ui->label_14->setText(QString::fromStdString(std::to_string(blackjackHandEvaluator.evaluate(dealerHand))));
+    }
+}
+
 void BlackJack::on_pushButton_2_clicked()
 {
+    ui->pushButton->setEnabled(false);
+    ui->pushButton_2->setEnabled(false);
+    while (blackjackHandEvaluator.evaluate(dealerHand) < 17) {
+        dealerDraw();
+    }
+    setStatus();
+}
 
+void BlackJack::setStatus() {
+    int playerScore = blackjackHandEvaluator.evaluate(playerHand);
+    int dealerScore = blackjackHandEvaluator.evaluate(dealerHand);
+    if (dealerScore > 21 && playerScore <= 21) {
+        ui->label_15->setText(QString("You WIN!"));
+    } else if (dealerScore <= 21 && playerScore > 21) {
+        ui->label_15->setText(QString("You LOST!"));
+    } else if (dealerScore == playerScore) {
+        ui->label_15->setText(QString("It's a DRAW!"));
+    } else if (dealerScore > playerScore) {
+        ui->label_15->setText(QString("You LOST!"));
+    } else {
+        ui->label_15->setText(QString("You WIN!"));
+    }
 }

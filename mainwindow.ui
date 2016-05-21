@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>300</width>
-    <height>300</height>
+    <width>187</width>
+    <height>217</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -32,8 +32,8 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>70</x>
-      <y>80</y>
+      <x>20</x>
+      <y>20</y>
       <width>211</width>
       <height>17</height>
      </rect>
@@ -45,8 +45,8 @@
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>70</x>
-      <y>130</y>
+      <x>20</x>
+      <y>60</y>
       <width>99</width>
       <height>27</height>
      </rect>
@@ -58,8 +58,8 @@
    <widget class="QPushButton" name="pushButton_2">
     <property name="geometry">
      <rect>
-      <x>70</x>
-      <y>180</y>
+      <x>20</x>
+      <y>100</y>
       <width>99</width>
       <height>27</height>
      </rect>
@@ -74,7 +74,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>300</width>
+     <width>187</width>
      <height>25</height>
     </rect>
    </property>
@@ -82,15 +82,6 @@
     <property name="title">
      <string>CardGames</string>
     </property>
-    <widget class="QMenu" name="menuSwitch_game">
-     <property name="title">
-      <string>Switch Game</string>
-     </property>
-     <addaction name="actionBlackJack"/>
-     <addaction name="actionVideo_Poker"/>
-    </widget>
-    <addaction name="actionNew_Game"/>
-    <addaction name="menuSwitch_game"/>
     <addaction name="actionQuit"/>
    </widget>
    <widget class="QMenu" name="menuAbout">
