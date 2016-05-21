@@ -42,7 +42,7 @@ std::string Card::suitValue() {
         case DIAMOND: return "D";
         default:
             // This can't happen
-            throw std::string("Broke card class with null rank!");
+            throw std::string("Broke card class with null suit!");
     }
 }
 
