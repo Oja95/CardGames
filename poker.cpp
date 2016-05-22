@@ -1,6 +1,8 @@
 #include "poker.h"
 #include "ui_poker.h"
 #include "blackjack.h"
+#include <list>
+#include <iostream>
 
 Poker::Poker(QWidget *parent) :
     QDialog(parent),
@@ -8,6 +10,7 @@ Poker::Poker(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    // todo: fix this abomination
     Card card1 = deck.draw();
     Card card2 = deck.draw();
     Card card3 = deck.draw();
@@ -38,6 +41,9 @@ Poker::Poker(QWidget *parent) :
     dealerHand.addCard(dealerCard3);
     dealerHand.addCard(dealerCard4);
     dealerHand.addCard(dealerCard5);
+    setPlayerStatus();
+    setDealerStatus();
+
 }
 
 Poker::~Poker()
@@ -72,5 +78,84 @@ void Poker::on_pushButton_clicked()
         Card newCard = deck.draw();
         playerHand.updateHand(newCard, 4);
         ui->label_5->setPixmap(BlackJack::cardToPixmap(newCard));
+    }
+    std::list<Card> pcards = playerHand.getCards();
+    std::cout << "Player cards: ";
+    for (std::list<Card>::iterator it = pcards.begin(); it != pcards.end(); ++it) {
+        std::cout << it->toString() << ", ";
+    }
+    std::cout << std::endl;
+    setPlayerStatus();
+    setDealerStatus();
+
+    if (dealerHandType > playerHandType) {
+//        std::cout << "Dealer won!" << std::endl;
+        ui->label_18->setText(QString("Dealer won!"));
+
+    } else if (playerHandType > dealerHandType) {
+        ui->label_18->setText(QString("You won!"));
+//        std::cout << "You won!" << std::endl;
+    } else {
+        ui->label_18->setText(QString("Same hand type. todo"));
+//        std::cout << "equal types"<< std::endl;
+        // todo
+    }
+}
+
+void Poker::setPlayerStatus() {
+    playerHandType = pokerHandEvaluator.evaluate(playerHand);
+    switch (playerHandType) {
+        case HIGHCARD:
+            ui->label_13->setText(QString("High card"));
+            break;
+        case THREEOFAKIND:
+            ui->label_13->setText(QString("Three of a kind"));
+            break;
+        case FOUROFAKIND:
+            ui->label_13->setText(QString("Four of a kind"));
+            break;
+        case TWOPAIR:
+            ui->label_13->setText(QString("Two pairs"));
+            break;
+        case ONEPAIR:
+            ui->label_13->setText(QString("Pair"));
+            break;
+        case FLUSH:
+            ui->label_13->setText(QString("Flush"));
+            break;
+        case HOUSE:
+            ui->label_13->setText(QString("House"));
+            break;
+        default:
+            break;
+    }
+}
+
+void Poker::setDealerStatus() {
+    dealerHandType = pokerHandEvaluator.evaluate(dealerHand);
+    switch (dealerHandType) {
+        case HIGHCARD:
+            ui->label_16->setText(QString("High card"));
+            break;
+        case THREEOFAKIND:
+            ui->label_16->setText(QString("Three of a kind"));
+            break;
+        case FOUROFAKIND:
+            ui->label_16->setText(QString("Four of a kind"));
+            break;
+        case TWOPAIR:
+            ui->label_16->setText(QString("Two pairs"));
+            break;
+        case ONEPAIR:
+            ui->label_16->setText(QString("Pair"));
+            break;
+        case FLUSH:
+            ui->label_16->setText(QString("Flush"));
+            break;
+        case HOUSE:
+            ui->label_16->setText(QString("House"));
+            break;
+        default:
+            break;
     }
 }
