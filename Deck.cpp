@@ -24,6 +24,6 @@ Card Deck::draw() {
     // its not like we're gonna run out of cards whilst a game of blackjack
     Card card = cards.back();
     cards.pop_back();
-    std::cout << card.toString() << std::endl;
+    //std::cout << card.toString() << std::endl;
     return card;
 }
