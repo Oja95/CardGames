@@ -29,7 +29,7 @@ private slots:
 private:
     Ui::BlackJack *ui;
 
-
+    bool standing = false;
     // Note to self: never go full retard
     bool first = true;
     bool second = true;

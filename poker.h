@@ -19,6 +19,7 @@ public:
     ~Poker();
     void setPlayerStatus();
     void setDealerStatus();
+    void dealerAction();
 
 private slots:
     void on_pushButton_clicked();

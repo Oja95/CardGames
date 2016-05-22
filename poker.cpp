@@ -53,7 +53,7 @@ Poker::~Poker()
 
 void Poker::on_pushButton_clicked()
 {
-//    ui->pushButton->setDisabled(true);
+    ui->pushButton->setDisabled(true);
     if (ui->checkBox->isChecked()) {
         Card newCard = deck.draw();
         playerHand.updateHand(newCard, 0);
@@ -79,12 +79,9 @@ void Poker::on_pushButton_clicked()
         playerHand.updateHand(newCard, 4);
         ui->label_5->setPixmap(BlackJack::cardToPixmap(newCard));
     }
-    std::list<Card> pcards = playerHand.getCards();
-    std::cout << "Player cards: ";
-    for (std::list<Card>::iterator it = pcards.begin(); it != pcards.end(); ++it) {
-        std::cout << it->toString() << ", ";
-    }
-    std::cout << std::endl;
+
+    dealerAction();
+
     setPlayerStatus();
     setDealerStatus();
 
@@ -96,7 +93,7 @@ void Poker::on_pushButton_clicked()
         ui->label_18->setText(QString("You won!"));
 //        std::cout << "You won!" << std::endl;
     } else {
-        ui->label_18->setText(QString("Same hand type. todo"));
+        ui->label_18->setText(QString("Same hand type. Comparison not implemented!"));
 //        std::cout << "equal types"<< std::endl;
         // todo
     }
@@ -157,5 +154,52 @@ void Poker::setDealerStatus() {
             break;
         default:
             break;
+    }
+}
+
+void Poker::dealerAction() {
+    if (dealerHandType == HOUSE) return;
+    std::list<Card> dealerCards = dealerHand.getCards();
+    Rank cardToHold = NORANK;
+    if (dealerHandType == ONEPAIR || dealerHandType == TWOPAIR || dealerHandType == THREEOFAKIND || dealerHandType == FOUROFAKIND) {
+        for (std::list<Card>::iterator it = dealerCards.begin(); it != dealerCards.end(); ++it) {
+            int rankCount = 0;
+            for (std::list<Card>::iterator it2 = dealerCards.begin(); it2 != dealerCards.end(); ++it2) {
+                if (it->getRank() == it2->getRank()) rankCount++;
+            }
+            if (rankCount >= 2) {
+                cardToHold = it->getRank();
+                break;
+            }
+        }
+    }
+    for (int i = 0; i < dealerCards.size(); i++) {
+        std::list<Card>::iterator it = dealerCards.begin();
+        std::advance(it, i);
+        if (it->getRank() != cardToHold) {
+            std::cout << "changed card";
+            *it = deck.draw();
+            dealerHand.updateHand(*it, i);
+            switch (i) {
+                case 0:
+                    ui->label_6->setPixmap(BlackJack::cardToPixmap(*it));
+                    break;
+                case 1:
+                    ui->label_7->setPixmap(BlackJack::cardToPixmap(*it));
+                    break;
+                case 2:
+                    ui->label_8->setPixmap(BlackJack::cardToPixmap(*it));
+                    break;
+                case 3:
+                    ui->label_9->setPixmap(BlackJack::cardToPixmap(*it));
+                    break;
+                case 4:
+                    ui->label_10->setPixmap(BlackJack::cardToPixmap(*it));
+                    break;
+                default:
+                    throw std::string("broke it m8");
+                    break;
+            }
+        }
     }
 }

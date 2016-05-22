@@ -25,8 +25,10 @@ void BlackJack::on_pushButton_clicked()
 {
     Card card = deck.draw();
     playerHand.addCard(card);
-
-    dealerDraw();
+    checkScore();
+    if (blackjackHandEvaluator.evaluate(playerHand) <= 21) {
+        dealerDraw();
+    }
 
     QPixmap pixmap = cardToPixmap(card);
 
@@ -67,7 +69,7 @@ void BlackJack::checkScore() {
 }
 
 void BlackJack::dealerDraw() {
-    if (blackjackHandEvaluator.evaluate(dealerHand) < 17) {
+    if (blackjackHandEvaluator.evaluate(dealerHand) < 17 || standing) {
         Card dealerCard = deck.draw();
         dealerHand.addCard(dealerCard);
         QPixmap DealerPixmap = cardToPixmap(dealerCard);
@@ -92,10 +94,11 @@ void BlackJack::dealerDraw() {
 
 void BlackJack::on_pushButton_2_clicked()
 {
+    standing = true;
     ui->pushButton->setEnabled(false);
     ui->pushButton_2->setEnabled(false);
-    while (blackjackHandEvaluator.evaluate(dealerHand) < 17) {
-        if (blackjackHandEvaluator.evaluate(dealerHand) > blackjackHandEvaluator.evaluate(playerHand)) break;
+    while (blackjackHandEvaluator.evaluate(dealerHand) <= blackjackHandEvaluator.evaluate(playerHand) && blackjackHandEvaluator.evaluate(dealerHand) != 21
+           && blackjackHandEvaluator.evaluate(playerHand) <= 21) {
         dealerDraw();
     }
     setStatus();
@@ -105,7 +108,7 @@ void BlackJack::setStatus() {
     int playerScore = blackjackHandEvaluator.evaluate(playerHand);
     int dealerScore = blackjackHandEvaluator.evaluate(dealerHand);
     if (dealerScore > 21 && playerScore > 21) {
-        ui->label_15->setText(QString("It's a DRAW"));
+        ui->label_15->setText(QString("You LOST!"));
     } else if (dealerScore > 21 && playerScore <= 21) {
         ui->label_15->setText(QString("You WIN!"));
     } else if (dealerScore <= 21 && playerScore > 21) {

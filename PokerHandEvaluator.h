@@ -2,7 +2,7 @@
 #define POKERHANDEVALUATOR_H
 
 enum HandType {
-    NOTYPE = 0  ,
+    NOTYPE = 0,
     HIGHCARD,
     ONEPAIR,
     TWOPAIR,
